@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -17,14 +19,14 @@ site_links = [
   { name: 'FAQ', relative_path: 'faqs', parent: 'Help' }
 ]
 
-def find_link!(name)
-  site_links.find_by { |link| link[:name] == parent } #|| raise ActiveRecord::RecordNotFound
+def find_link!(_name)
+  site_links.find_by { |link| link[:name] == parent } # || raise ActiveRecord::RecordNotFound
 end
 
 def create_link(attrs)
   parent = nil
   if (parent_name = attrs.delete(:parent))
-    parent = SiteLink.find_by(name: parent_name)# || create_link(find_link!(parent))
+    parent = SiteLink.find_by(name: parent_name) # || create_link(find_link!(parent))
   end
 
   SiteLink.create!(attrs.merge(parent: parent))

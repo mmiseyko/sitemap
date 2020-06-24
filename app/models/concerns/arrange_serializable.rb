@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module ArrangeSerializable
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def serialize_tree options={}, nodes=nil, parents = []
+    def serialize_tree(options = {}, nodes = nil, parents = [])
       nodes = arrange(options) if nodes.nil?
       nodes.map do |parent, children|
         SiteLinkSerializer.new(parent, parents: parents).serializable_hash.merge(

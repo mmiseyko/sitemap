@@ -12,7 +12,6 @@ RSpec.describe SiteLink, type: :model do
     it { is_expected.to validate_presence_of(:relative_path) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name).scoped_to(:ancestry) }
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:ancestry) }
 
     describe 'relative_path' do
       subject(:link) { build(:site_link, ancestry: ancestry, relative_path: relative_path) }
@@ -26,25 +25,29 @@ RSpec.describe SiteLink, type: :model do
 
         context 'when no slash' do
           let(:relative_path) { 'not_root_path' }
+
           it { expect(link.errors[:relative_path]).to include('Slash is required for root node') }
         end
 
         context 'when slash presents' do
           let(:relative_path) { '/root_path' }
+
           it { expect(link.errors[:relative_path]).to be_empty }
         end
       end
 
-      context 'when root node' do
+      context 'when child node' do
         let(:ancestry) { '1' }
 
         context 'when no slash' do
           let(:relative_path) { 'not_root_path' }
+
           it { expect(link.errors[:relative_path]).to be_empty }
         end
 
         context 'when slash presents' do
           let(:relative_path) { '/root_path' }
+
           it { expect(link.errors[:relative_path]).to include('Slash in not allowed for child node') }
         end
       end

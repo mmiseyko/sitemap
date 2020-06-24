@@ -4,19 +4,19 @@ class RelativePathValidator < ActiveModel::Validator
   def validate(record)
     return unless record.relative_path
 
-    has_slash = has_slash?(record)
-    if slash_allowed?(record)
-      record.errors.add(:relative_path, :slash_required) unless has_slash
-    else
-      record.errors.add(:relative_path, :slash_not_allowed) if has_slash
+    start_with_slash = start_with_slash?(record)
+    if start_slash_required?(record)
+      record.errors.add(:relative_path, :slash_required) unless start_with_slash
+    elsif start_with_slash
+      record.errors.add(:relative_path, :slash_not_allowed)
     end
   end
 
-  def slash_allowed?(record)
+  def start_slash_required?(record)
     record.ancestry.nil?
   end
 
-  def has_slash?(record)
-    record.relative_path.include?('/')
+  def start_with_slash?(record)
+    record.relative_path.start_with?('/')
   end
 end

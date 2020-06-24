@@ -1,0 +1,67 @@
+require: rubocop-rspec
+
+Layout/LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+# Metrics/AbcSize:
+#   Exclude:
+#     - app/models/ability/**/*
+# Metrics/MethodLength:
+#   Exclude:
+#     - app/models/ability/**/*
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+# https://github.com/rubocop-hq/rubocop/issues/4222#issuecomment-290722962
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+RSpec/AnyInstance:
+  Enabled: false
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - app/services/sandbox.rb
+    - Gemfile
+    - bin/*
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+RSpec/NestedGroups:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true

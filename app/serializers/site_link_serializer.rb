@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteLinkSerializer < ActiveModel::Serializer
   attributes :id, :link_id, :name, :relative_path, :full_path
 
