@@ -1,5 +1,5 @@
 # SITEMAP
-Backend of Sitemap project. Use [ancestry](https://github.com/stefankroes/ancestry/) gem to organize tree structure of sitemap. Represent SiteLink model with serializer, controller and CreateSiteLink service.
+Backend of Sitemap project. Use [ancestry](https://github.com/stefankroes/ancestry/) gem to organize tree structure of sitemap. Represents SiteLink model with serializer, controller and CreateSiteLink service.
 
 ## Install
 
