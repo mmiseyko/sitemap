@@ -26,13 +26,19 @@ RSpec.describe SiteLink, type: :model do
         context 'when no slash' do
           let(:relative_path) { 'not_root_path' }
 
-          it { expect(link.errors[:relative_path]).to include('Slash is required for root node') }
+          it { expect(link.errors[:relative_path]).to include('invalid_format') }
         end
 
         context 'when slash presents' do
-          let(:relative_path) { '/root_path' }
+          let(:relative_path) { '/root_path/path' }
 
           it { expect(link.errors[:relative_path]).to be_empty }
+
+          context 'when invalid format' do
+            let(:relative_path) { '//root_path' }
+
+            it { expect(link.errors[:relative_path]).to include('invalid_format') }
+          end
         end
       end
 
@@ -40,15 +46,21 @@ RSpec.describe SiteLink, type: :model do
         let(:ancestry) { '1' }
 
         context 'when no slash' do
-          let(:relative_path) { 'not_root_path' }
+          let(:relative_path) { 'not_root_path/path' }
 
           it { expect(link.errors[:relative_path]).to be_empty }
+
+          context 'when invalid format' do
+            let(:relative_path) { 'not_root_path/path!' }
+
+            it { expect(link.errors[:relative_path]).to include('invalid_format') }
+          end
         end
 
         context 'when slash presents' do
           let(:relative_path) { '/root_path' }
 
-          it { expect(link.errors[:relative_path]).to include('Slash in not allowed for child node') }
+          it { expect(link.errors[:relative_path]).to include('invalid_format') }
         end
       end
     end
