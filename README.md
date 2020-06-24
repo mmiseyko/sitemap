@@ -56,3 +56,9 @@ overcommit --install
 ```shell
 rspec
 ```
+
+## Run rubocop
+
+```shell
+rubocop
+```
