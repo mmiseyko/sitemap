@@ -55,7 +55,7 @@ RSpec.describe SiteLink, type: :model do
   end
 
   describe '#serialize_tree' do
-    before { create_test_tree }
+    before { test_tree }
 
     it 'returns full tree' do
       expect(described_class.serialize_tree).to eq(tree_json)

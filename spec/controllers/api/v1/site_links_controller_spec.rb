@@ -7,7 +7,7 @@ RSpec.describe Api::V1::SiteLinksController, type: :controller do
     let(:do_action) { get :index }
 
     before do
-      create_test_tree
+      test_tree
       do_action
     end
 

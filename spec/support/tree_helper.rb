@@ -112,14 +112,20 @@ module Support
       }
     ].freeze
 
+    def test_tree
+      @test_tree ||= create_test_tree
+    end
+
     def create_test_tree
       TEST_TREE.each do |attrs|
+        attrs = attrs.dup
         parent = nil
         if (parent_name = attrs.delete(:parent))
           parent = SiteLink.find_by(name: parent_name)
         end
 
-        SiteLink.create!(attrs.merge(parent: parent))
+        site_link = SiteLink.find_or_initialize_by(attrs)
+        site_link.update!(parent: parent)
       end
     end
 
