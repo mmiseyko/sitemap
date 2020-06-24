@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    errors:
+      models:
+        site_link:
+          attributes:
+            relative_path:
+              slash_not_allowed: 'Slash in not allowed for child node'
+              slash_required: 'Slash is required for root node'
